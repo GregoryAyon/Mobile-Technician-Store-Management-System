@@ -1,0 +1,101 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>SIGN IN</title>
+</head>
+
+<body>
+
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <div class="row">
+            <div class="col-md-6">
+                <img class="img-fluid" src="{% static 'image/signin.svg' %}" alt="" srcset="">
+            </div>
+
+            <div class="col-md-6">
+                <h3 class="signin-text">SIGN IN</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group">
+                        {{field.label_tag}}
+                        {{field}}
+                    </div>
+                    {% endfor %}
+                    {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                    <p style="color: red;">{{error}}</p>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="">
+                        <label class="form-check-label" for="checkbox">Remember Me</label>
+                    </div>
+                    <span>New here? <a href="{% url 'signup' %}">Create an account</a></span><br><br>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <footer class="text-center text-white text-lg-start w-100 fixed-bottom">
+            <div class="text-center p-2" style="background-color: #333">
+                © 2021 Copyright:
+                <a class="text-white ml-1" href="">SA TEAM</a>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+
+
+    <script>
+        var inputfields = document.getElementsByTagName('input');
+
+        inputfields[1].placeholder = 'Username';
+        inputfields[2].placeholder = 'Password';
+
+        for (var i = 1; i < inputfields.length - 1; ++i) {
+            inputfields[i].classList.add('form-control');
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

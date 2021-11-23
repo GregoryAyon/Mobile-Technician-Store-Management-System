@@ -1,0 +1,39 @@
+{% extends 'accounts/main.html' %}
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md">
+            <hr>
+            <div class="card card-body">
+                <h5 class="text-center mb-3 p-2" style="background-color: cornflowerblue;color: azure;">Order
+                    Details</h5>
+                <table class="table table-sm text-center">
+                    <tr>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Service Charge</th>
+                        <th>Parts Cost</th>
+                        <th>Refreshment Cost</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+
+
+                    </tr>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{order.date_created}}</td>
+                        <td>{{order.customer_name}}</td>
+                        <td>{{order.service_charge}}</td>
+                        <td>{{order.parts_cost}}</td>
+                        <td>{{order.refreshment_cost}}</td>
+                        <td><a href="{% url 'update' order.id %}" class="btn btn-primary">Update</a></td>
+                        <td><a href="{% url 'delete' order.id %}" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+{% endblock body %}

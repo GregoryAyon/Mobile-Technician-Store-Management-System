@@ -1,0 +1,104 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block body %}
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-auto w-100">
+            <div class="card card-body" id="total-orders">
+                <div class="card-header header2 text-center" style="background-color: cornflowerblue;">
+                    <h5 class="card-title h5 text-white mt-1 mb-1">Order Section / Accessories and Cost</h5>
+                </div>
+                <div class="card-body form2">
+                    <form method="POST" action="">
+                        {% csrf_token%}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Enter Customer Name:</label>
+                                    {{form.customer_name}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Enter Service Charge:</label>
+                                    {{form.service_charge}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Enter Parts Cost:</label>
+                                    {{form.parts_cost}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Enter Refreshment Cost:</label>
+                                    {{form.refreshment_cost}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary float-right">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-auto w-100">
+            <div class="card card-body">
+                <table class="table text-center">
+                    <tr style="background-color: cornflowerblue;" class="text-white">
+                        <th class="text-center h5" scope="col">Weekly Income</th>
+                        <th class="text-center h5" scope="col">Monthly Income</th>
+                    </tr>
+                    <tr class="my-2">
+                        <td class="h6">Total collected this Weekly {{weekly}} taka</td>
+
+                        <td class="h6">Total collected this Monthly {{monthly}} taka </td>
+                    </tr>
+                    <tr>
+                        <td> <a href="{% url 'views' 'weekly' %}" class="btn btn-primary ml-1">View Details</a></td>
+                        <td><a href="{% url 'views' 'monthly' %}" class="btn btn-primary ml-1">View Details</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md">
+            <hr>
+            <div class="card card-body">
+                <h5 class="text-center mb-3 p-2" style="background-color: cornflowerblue;color: azure;">Daily Order
+                    Details</h5>
+                <table class="table table-sm text-center">
+                    <tr>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Service Charge</th>
+                        <th>Parts Cost</th>
+                        <th>Refreshment Cost</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+
+
+                    </tr>
+                    {% for order_daily in orders_daily %}
+                    <tr>
+                        <td>{{order_daily.date_created}}</td>
+                        <td>{{order_daily.customer_name}}</td>
+                        <td>{{order_daily.service_charge}}</td>
+                        <td>{{order_daily.parts_cost}}</td>
+                        <td>{{order_daily.refreshment_cost}}</td>
+                        <td><a href="{% url 'update' order_daily.id %}" class="btn btn-primary">Update</a></td>
+                        <td><a href="{% url 'delete' order_daily.id %}" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+
+{% endblock body %}

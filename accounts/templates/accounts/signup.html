@@ -1,0 +1,90 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>SIGN UP</title>
+
+</head>
+
+<body>
+
+
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <div class="row">
+            <div class="col-md-6">
+                <img class="img-fluid" src="{% static 'image/signup.svg' %}" alt="" srcset="">
+            </div>
+
+            <div class="col-md-6">
+                <h3 class="signin-text">SIGN UP</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="form-group">
+                        {{field.label_tag}}
+                        {{field}}
+                        {% for error in field.errors %}
+                        <p style="color: red;">{{error}}</p>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+
+                    <span>Already have an account? <a href="{% url 'login' %}">LOGIN</a></span><br><br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <footer class="text-center text-white text-lg-start w-100 fixed-bottom">
+            <div class="text-center p-2" style="background-color: #333">
+                © 2021 Copyright:
+                <a class="text-white ml-1" href="">SA TEAM</a>
+            </div>
+        </footer>
+    </div>
+
+
+    <script>
+        // var inputlist = document.querySelectorAll("input[type=text] , input[type=password]");
+        var inputfields = document.getElementsByTagName('input');
+
+        inputfields[1].placeholder = 'Username';
+        inputfields[2].placeholder = 'Password';
+        inputfields[3].placeholder = 'Confirm Password';
+
+        for (var i = 1; i < inputfields.length; ++i) {
+            inputfields[i].classList.add('form-control');
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

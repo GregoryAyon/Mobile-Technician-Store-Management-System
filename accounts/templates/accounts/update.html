@@ -1,0 +1,44 @@
+{% extends 'accounts/main.html' %}
+{% block body %}
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-auto w-100">
+            <div class="card card-body" id="total-orders">
+                <div class="card-header header2 text-center" style="background-color: cornflowerblue;">
+                    <h5 class="card-title h5 text-white mt-1 mb-1">Order Section / Accessories and Cost</h5>
+                </div>
+                <div class="card-body form2">
+                    <form method="POST" action="">
+                        {% csrf_token%}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Enter Customer Name:</label>
+                                    {{form.customer_name}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Enter Service Charge:</label>
+                                    {{form.service_charge}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Enter Parts Cost:</label>
+                                    {{form.parts_cost}}
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Enter Refreshment Cost:</label>
+                                    {{form.refreshment_cost}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary float-right">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
